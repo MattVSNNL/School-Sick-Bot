@@ -1,35 +1,128 @@
 <!doctype html>
 <html lang="nl">
-  <head><meta charset="utf-8"><title>Testformulier afwezigheid</title></head>
-  <body data-submitted="false">
-    <div data-automation-id="questionItem"><h2>Opleiding Zorg, Welzijn, Techniek, ICT, Onboard of Software Developer</h2></div>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Afwezig melden MBO College Almere — lokale test</title>
+  <style>
+    :root { --accent:#f36f21; --ink:#242424; --muted:#616161; --paper:#fffaf6; --line:#e6dfda; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:#f4f1ef; color:var(--ink); font:16px/1.48 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+    .testbar { position:sticky; top:0; z-index:5; padding:10px 16px; background:#26372f; color:#fff; text-align:center; font-weight:700; letter-spacing:.02em; }
+    .testbar span { display:inline-block; margin-right:8px; padding:2px 8px; border-radius:999px; background:#d7f7df; color:#174d29; font-size:12px; }
+    .shell { width:min(760px,100%); margin:0 auto 64px; background:var(--paper); min-height:100vh; box-shadow:0 1px 20px #00000012; }
+    .hero { height:174px; padding:38px 42px; color:#fff; background:
+      radial-gradient(circle at 86% 30%,#ffc38b55 0 12%,transparent 13%),
+      radial-gradient(circle at 12% 90%,#fff3 0 18%,transparent 19%),
+      linear-gradient(135deg,#ee5e1d,#f98b31); }
+    .hero h1 { margin:0 0 8px; font-size:30px; line-height:1.16; }
+    .hero p { margin:0; max-width:560px; color:#fff; }
+    .intro { padding:32px 42px 20px; }
+    .intro h2 { margin:0 0 10px; font-size:20px; }
+    .intro p { color:var(--muted); }
+    .required-note { color:#a4262c; font-size:14px; }
+    form { padding:0 42px 42px; }
+    [data-automation-id="questionItem"] { padding:28px 0; border-top:1px solid var(--line); }
+    [data-automation-id="questionItem"] h2 { margin:0 0 10px; font-size:20px; font-weight:600; }
+    [data-automation-id="questionItem"] h2::after { content:" *"; color:#c42b1c; }
+    .description { margin:0 0 18px; color:var(--muted); }
+    .text-input,.date-input { width:100%; height:48px; border:1px solid #b8b8b8; border-radius:3px; background:#fff; padding:10px 12px; color:var(--ink); font:inherit; }
+    .text-input:focus,.date-input:focus { outline:2px solid var(--accent); outline-offset:0; border-color:var(--accent); }
+    .choices { display:grid; gap:12px; }
+    .choice { display:flex; align-items:flex-start; gap:11px; width:max-content; max-width:100%; padding:5px 2px; cursor:pointer; }
+    .choice input { appearance:none; flex:none; width:22px; height:22px; margin:1px 0 0; border:2px solid #656565; border-radius:50%; background:#fff; }
+    .choice input:checked { border:6px solid var(--accent); }
+    .submit { width:100%; height:52px; margin-top:25px; border:0; border-radius:4px; background:var(--accent); color:#fff; font-size:18px; font-weight:700; cursor:pointer; }
+    .submit:hover { background:#d85b14; }
+    .privacy { margin:26px 0 0; color:var(--muted); font-size:13px; }
+    .success { display:none; margin:24px 42px 0; padding:18px 20px; border:1px solid #87bf94; border-radius:5px; background:#edf9f0; color:#174d29; }
+    .success.show { display:block; }
+    [hidden] { display:none !important; }
+    @media (max-width:600px) {
+      .hero { height:auto; padding:30px 24px; }
+      .hero h1 { font-size:26px; }
+      .intro { padding:26px 24px 15px; }
+      form { padding:0 24px 34px; }
+      [data-automation-id="questionItem"] { padding:25px 0; }
+      .success { margin:20px 24px 0; }
+    }
+  </style>
+</head>
+<body data-submitted="false">
+  <div class="testbar"><span>LOKALE TEST</span> Dit formulier verstuurt niets naar school of Microsoft.</div>
+  <main class="shell">
+    <header class="hero">
+      <h1>Afwezig melden MBO College Almere</h1>
+      <p>Wat moet je doen als je niet naar school kunt komen? Gebruik dit lokale formulier om de automatisering veilig te testen.</p>
+    </header>
+    <section class="intro" data-automation-id="questionItem">
+      <h2>Opleiding Zorg, Welzijn, Techniek, ICT, Onboard of Software Developer</h2>
+      <p>Afwezig melden doe je via onderstaand formulier. Een afmelding voor vandaag moet tussen 06.00 en vóór 09.30 uur worden ingediend.</p>
+      <div class="required-note">* Verplicht</div>
+    </section>
+    <div id="success" class="success"><strong>Bedankt. Test geslaagd.</strong> De gegevens zijn lokaal ingevuld. Er is niets verzonden.</div>
     <form id="sick-form">
-      <div data-automation-id="questionItem"><h2>1. Studentnummer</h2><input data-automation-id="textInput" type="text" required></div>
-      <div data-automation-id="questionItem"><h2>2. Voornaam</h2><input data-automation-id="textInput" type="text" required></div>
-      <div data-automation-id="questionItem"><h2>3. Achternaam</h2><input data-automation-id="textInput" type="text" required></div>
-      <div data-automation-id="questionItem"><h2>4. Geboortedatum</h2><input type="date" required></div>
-      <div data-automation-id="questionItem"><h2>5. Opleiding</h2><label><input type="radio" name="programme" value="Software Developer niveau 4">Software Developer niveau 4</label></div>
-      <div data-automation-id="questionItem"><h2>6. Wie doet de aanvraag</h2><label><input type="radio" name="applicant" value="Student">Student</label><label><input type="radio" name="applicant" value="Ouder/verzorger">Ouder/verzorger</label></div>
-      <div data-automation-id="questionItem"><h2>7. Telefoonnummer van aanvrager</h2><input data-automation-id="textInput" type="text" required></div>
-      <div data-automation-id="questionItem"><h2>8. Telefonisch contact gewenst?</h2><label><input type="radio" name="phone" value="Ja">Ja</label><label><input type="radio" name="phone" value="Nee">Nee</label></div>
-      <div data-automation-id="questionItem"><h2>9. Reden afwezigheid</h2><label><input id="reason-sick" type="radio" name="reason" value="Ziek">Ziek</label></div>
+      <div data-automation-id="questionItem"><h2>1. Studentnummer</h2><input class="text-input" data-automation-id="textInput" type="text" inputmode="numeric" placeholder="De waarde moet een nummer zijn" required></div>
+      <div data-automation-id="questionItem"><h2>2. Voornaam</h2><input class="text-input" data-automation-id="textInput" type="text" placeholder="Voer je antwoord in" required></div>
+      <div data-automation-id="questionItem"><h2>3. Achternaam</h2><input class="text-input" data-automation-id="textInput" type="text" placeholder="Voer je antwoord in" required></div>
+      <div data-automation-id="questionItem"><h2>4. Geboortedatum</h2><input class="date-input" type="date" required></div>
+      <div data-automation-id="questionItem"><h2>5. Opleiding</h2><div class="choices">
+        <label class="choice"><input type="radio" name="programme" value="ICT niveau 3 en 4">ICT niveau 3 en 4</label>
+        <label class="choice"><input type="radio" name="programme" value="Software Developer niveau 4">Software Developer niveau 4</label>
+        <label class="choice"><input type="radio" name="programme" value="Techniek niveau 2, 3 en 4">Techniek niveau 2, 3 en 4</label>
+      </div></div>
+      <div data-automation-id="questionItem"><h2>6. Wie doet de aanvraag</h2><p class="description">Als je jonger bent dan 18 jaar, vraag je ouder/verzorger om je afwezigheid door te geven.</p><div class="choices">
+        <label class="choice"><input type="radio" name="applicant" value="Student">Student</label>
+        <label class="choice"><input type="radio" name="applicant" value="Ouder/verzorger">Ouder/verzorger</label>
+        <label class="choice"><input type="radio" name="applicant" value="Werkgever (indien student op stage is)">Werkgever (indien student op stage is)</label>
+        <label class="choice"><input type="radio" name="applicant" value="Anders">Anders</label>
+      </div></div>
+      <div data-automation-id="questionItem"><h2>7. Telefoonnummer van aanvrager</h2><p class="description">Telefoonnummer waarop je te bereiken bent.</p><input class="text-input" data-automation-id="textInput" type="tel" placeholder="Voer je antwoord in" required></div>
+      <div data-automation-id="questionItem"><h2>8. Telefonisch contact gewenst?</h2><p class="description">Kies ‘Ja’ als je teruggebeld wilt worden door de presentiemedewerker.</p><div class="choices">
+        <label class="choice"><input type="radio" name="phone" value="Ja">Ja</label>
+        <label class="choice"><input type="radio" name="phone" value="Nee">Nee</label>
+      </div></div>
+      <div data-automation-id="questionItem"><h2>9. Reden afwezigheid</h2><p class="description"><strong>Ziekmeldingen geef je dagelijks door.</strong> Dit kan niet voor meerdere dagen tegelijk.</p><div class="choices">
+        <label class="choice"><input id="reason-sick" type="radio" name="reason" value="Ziek">Ziek</label>
+        <label class="choice"><input type="radio" name="reason" value="Andere reden">Andere reden</label>
+      </div></div>
       <div id="sick-dates" hidden>
-        <div data-automation-id="questionItem"><h2>10. Welke dag meld je je ziek?</h2><input type="date" required></div>
-        <div data-automation-id="questionItem"><h2>11. Wanneer verwacht je beter te zijn?</h2><input type="date" required></div>
+        <div data-automation-id="questionItem"><h2>10. Welke dag meld je je ziek?</h2><p class="description">Voor welke dag wil je je afmelden? Dit is de <strong>begindatum</strong>.</p><input class="date-input" type="date" required></div>
+        <div data-automation-id="questionItem"><h2>11. Wanneer verwacht je beter te zijn?</h2><p class="description">Vul hieronder de <strong>laatste dag dat je afwezig bent</strong> in. De daaropvolgende schooldag word je weer op school verwacht.</p><input class="date-input" type="date" required></div>
       </div>
-      <button type="submit">Submit</button>
+      <button class="submit" type="submit">Submit</button>
+      <p class="privacy">Testomgeving: voer geen echte persoonsgegevens in als dat niet nodig is.</p>
     </form>
-    <script>
-      document.querySelector('#reason-sick').addEventListener('change', () => {
-        document.querySelector('#sick-dates').hidden = false;
-      });
-      document.querySelector('#sick-form').addEventListener('submit', (event) => {
-        event.preventDefault();
-        document.body.dataset.submitted = 'true';
-        const message = document.createElement('p');
-        message.textContent = 'Your response was submitted.';
-        document.body.appendChild(message);
-      });
-    </script>
-  </body>
+  </main>
+  <script>
+    const dates = document.querySelector('#sick-dates');
+    document.querySelector('#reason-sick').addEventListener('change', () => { dates.hidden = false; });
+    document.querySelector('input[value="Andere reden"]').addEventListener('change', () => { dates.hidden = true; });
+    document.querySelector('#sick-form').addEventListener('submit', (event) => {
+      event.preventDefault();
+      document.body.dataset.submitted = 'true';
+      document.querySelector('#success').classList.add('show');
+      if (!document.body.textContent.includes('Your response was submitted.')) {
+        const confirmation = document.createElement('span');
+        confirmation.hidden = true;
+        confirmation.textContent = 'Your response was submitted.';
+        document.body.appendChild(confirmation);
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    if (new URLSearchParams(location.search).has('demo')) {
+      const textFields = document.querySelectorAll('[data-automation-id="textInput"]');
+      textFields[0].value = '123456'; textFields[1].value = 'Test'; textFields[2].value = 'Student'; textFields[3].value = '0612345678';
+      document.querySelector('input[type="date"]').value = '2000-01-31';
+      document.querySelector('input[value="Software Developer niveau 4"]').checked = true;
+      document.querySelector('input[value="Student"]').checked = true;
+      document.querySelector('input[value="Nee"]').checked = true;
+      document.querySelector('#reason-sick').checked = true; dates.hidden = false;
+      const today = new Date().toISOString().slice(0,10);
+      const sickDateInputs = dates.querySelectorAll('input[type="date"]');
+      sickDateInputs[0].value = today; sickDateInputs[1].value = today;
+    }
+  </script>
+</body>
 </html>

@@ -3,21 +3,42 @@ import { runFormAutomation } from "./form.js";
 
 const timers = new Map();
 
-export function createSubmissionService({ config, store }) {
+const noNotifications = {
+  submissionSucceeded: async () => {},
+  submissionFailed: async () => {},
+};
+
+export function createSubmissionService({
+  config,
+  store,
+  notifier = noNotifications,
+  runForm = runFormAutomation,
+}) {
+  async function notifySafely(method, details) {
+    try {
+      await notifier[method](details);
+    } catch (error) {
+      console.error(`Notification failed: ${error.message}`);
+    }
+  }
+
   async function execute(job) {
     await store.update(job.id, { status: "running", error: null });
     try {
-      await runFormAutomation(
+      await runForm(
         config.form,
         { startDate: job.startDate, lastSickDate: job.lastSickDate },
         { submit: true, zone: config.zone },
       );
-      return await store.update(job.id, {
+      const completed = await store.update(job.id, {
         status: "submitted",
         submittedAt: new Date().toISOString(),
       });
+      await notifySafely("submissionSucceeded", completed);
+      return completed;
     } catch (error) {
-      await store.update(job.id, { status: "failed", error: error.message });
+      const failed = await store.update(job.id, { status: "failed", error: error.message });
+      await notifySafely("submissionFailed", { ...failed, error });
       throw error;
     } finally {
       timers.delete(job.id);

@@ -11,6 +11,9 @@ export function loadConfig(env = process.env) {
     apiKey: env.SICK_API_KEY ?? "",
     submitEnabled: asBoolean(env.SUBMIT_ENABLED, false),
     dataFile: env.DATA_FILE ?? ".data/jobs.json",
+    notifications: {
+      discordWebhookUrl: env.DISCORD_WEBHOOK_URL ?? "",
+    },
     form: {
       url: env.FORM_URL ?? "",
       studentNumber: env.STUDENT_NUMBER ?? "",

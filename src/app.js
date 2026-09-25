@@ -8,7 +8,8 @@ import { runFormAutomation } from "./form.js";
 import { validateConfig } from "./config.js";
 
 const directory = path.dirname(fileURLToPath(import.meta.url));
-const fixtureUrl = pathToFileURL(path.resolve(directory, "../test/fixtures/mock-form.html")).href;
+const fixturePath = path.resolve(directory, "../test/fixtures/mock-form.html");
+const fixtureUrl = pathToFileURL(fixturePath).href;
 
 export function createApp({ config, submissionService }) {
   const app = express();
@@ -21,6 +22,7 @@ export function createApp({ config, submissionService }) {
   });
 
   app.get("/health", (req, res) => res.json({ ok: true }));
+  app.get("/test-form", (req, res) => res.sendFile(fixturePath));
   app.use(requireApiKey(config.apiKey));
 
   function planRequest(req) {

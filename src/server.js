@@ -1,6 +1,7 @@
 import { createApp } from "./app.js";
 import { loadConfig, validateConfig } from "./config.js";
 import { JobStore } from "./job-store.js";
+import { createDiscordNotifier } from "./notifications.js";
 import { createSubmissionService } from "./service.js";
 
 const config = loadConfig();
@@ -8,7 +9,10 @@ validateConfig(config);
 
 const store = new JobStore(config.dataFile);
 await store.init();
-const submissionService = createSubmissionService({ config, store });
+const notifier = createDiscordNotifier({
+  webhookUrl: config.notifications.discordWebhookUrl,
+});
+const submissionService = createSubmissionService({ config, store, notifier });
 submissionService.resume();
 
 const app = createApp({ config, submissionService });
