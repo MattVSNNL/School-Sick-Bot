@@ -1,4 +1,5 @@
 import { DateTime } from "luxon";
+import { validateConfig } from "./config.js";
 import { runFormAutomation } from "./form.js";
 
 const timers = new Map();
@@ -6,6 +7,7 @@ const timers = new Map();
 const noNotifications = {
   submissionSucceeded: async () => {},
   submissionFailed: async () => {},
+  duplicateBlocked: async () => {},
 };
 
 export function createSubmissionService({
@@ -55,6 +57,18 @@ export function createSubmissionService({
   }
 
   async function submit({ plan, lastSickDate }) {
+    try {
+      validateConfig(config, { forSubmission: true });
+      new URL(config.form.url);
+    } catch (error) {
+      await notifySafely("submissionFailed", {
+        startDate: plan.startDate,
+        lastSickDate,
+        error,
+      });
+      throw error;
+    }
+
     const status = plan.action === "schedule" ? "scheduled" : "running";
     const result = await store.create({
       status,
@@ -62,7 +76,10 @@ export function createSubmissionService({
       lastSickDate,
       runAt: plan.runAt,
     });
-    if (!result.created) return { duplicate: true, job: result.job };
+    if (!result.created) {
+      await notifySafely("duplicateBlocked", result.job);
+      return { duplicate: true, job: result.job };
+    }
 
     if (plan.action === "schedule") {
       arm(result.job);

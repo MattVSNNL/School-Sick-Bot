@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "node src/server.js",
-    "test": "node --test",
+    "test": "node --test test/*.test.js",
     "test:browser": "node --test test/form-fixture.test.js"
   },
   "dependencies": {

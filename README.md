@@ -67,9 +67,11 @@ DISCORD_WEBHOOK_URL=https://discord.com/api/webhooks/...
 ```
 
 Redeploy after adding it. This also covers a queued 06:00 submission because the
-notification is sent by the server after the browser finishes. A notification
-problem is logged but never changes the result of the form submission. Keep the
-webhook URL private; anyone who has it can post to that Discord channel.
+notification is sent by the server after the browser finishes. Duplicate requests
+send a separate warning without opening the form again. Invalid or unreachable
+form URLs send a failure notification. A notification problem is logged but never
+changes the result of the form submission. Keep the webhook URL private; anyone
+who has it can post to that Discord channel.
 
 ## iPhone Shortcut
 

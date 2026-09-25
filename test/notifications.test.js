@@ -63,3 +63,23 @@ test("Discord errors are contained and do not throw", async () => {
   assert.match(result.error, /HTTP 429/);
   assert.equal(errors.length, 1);
 });
+
+test("Discord notifier explains blocked duplicate requests", async () => {
+  let content;
+  const notifier = createDiscordNotifier({
+    webhookUrl: "https://discord.com/api/webhooks/test/token",
+    fetchImpl: async (_url, options) => {
+      content = JSON.parse(options.body).content;
+      return { ok: true, status: 204 };
+    },
+  });
+
+  await notifier.duplicateBlocked({
+    startDate: "2026-09-25",
+    lastSickDate: "2026-09-25",
+    status: "submitted",
+  });
+
+  assert.match(content, /Dubbele ziekmelding geblokkeerd/);
+  assert.match(content, /submitted/);
+});

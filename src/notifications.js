@@ -42,5 +42,10 @@ export function createDiscordNotifier({ webhookUrl, fetchImpl = fetch, logger = 
         `❌ **Ziekmelding mislukt**\nBegindatum: ${startDate}\nLaatste ziektedag: ${lastSickDate}\nFout: \`${shorten(error?.message ?? error)}\``,
       );
     },
+    duplicateBlocked({ startDate, lastSickDate, status }) {
+      return send(
+        `⚠️ **Dubbele ziekmelding geblokkeerd**\nBegindatum: ${startDate}\nLaatste ziektedag: ${lastSickDate}\nBestaande status: ${status}`,
+      );
+    },
   };
 }

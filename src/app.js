@@ -71,7 +71,6 @@ export function createApp({ config, submissionService }) {
       if (!config.submitEnabled) {
         return res.status(503).json({ ok: false, error: "Live submission is disabled." });
       }
-      validateConfig(config, { forSubmission: true });
       const { plan, lastSickDate } = planRequest(req);
       const result = await submissionService.submit({ plan, lastSickDate });
       const status = result.job.status === "scheduled" ? 202 : 200;
