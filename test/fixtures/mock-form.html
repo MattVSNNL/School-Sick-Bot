@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="nl">
+  <head><meta charset="utf-8"><title>Testformulier afwezigheid</title></head>
+  <body data-submitted="false">
+    <div data-automation-id="questionItem"><h2>Opleiding Zorg, Welzijn, Techniek, ICT, Onboard of Software Developer</h2></div>
+    <form id="sick-form">
+      <div data-automation-id="questionItem"><h2>1. Studentnummer</h2><input data-automation-id="textInput" type="text" required></div>
+      <div data-automation-id="questionItem"><h2>2. Voornaam</h2><input data-automation-id="textInput" type="text" required></div>
+      <div data-automation-id="questionItem"><h2>3. Achternaam</h2><input data-automation-id="textInput" type="text" required></div>
+      <div data-automation-id="questionItem"><h2>4. Geboortedatum</h2><input type="date" required></div>
+      <div data-automation-id="questionItem"><h2>5. Opleiding</h2><label><input type="radio" name="programme" value="Software Developer niveau 4">Software Developer niveau 4</label></div>
+      <div data-automation-id="questionItem"><h2>6. Wie doet de aanvraag</h2><label><input type="radio" name="applicant" value="Student">Student</label><label><input type="radio" name="applicant" value="Ouder/verzorger">Ouder/verzorger</label></div>
+      <div data-automation-id="questionItem"><h2>7. Telefoonnummer van aanvrager</h2><input data-automation-id="textInput" type="text" required></div>
+      <div data-automation-id="questionItem"><h2>8. Telefonisch contact gewenst?</h2><label><input type="radio" name="phone" value="Ja">Ja</label><label><input type="radio" name="phone" value="Nee">Nee</label></div>
+      <div data-automation-id="questionItem"><h2>9. Reden afwezigheid</h2><label><input id="reason-sick" type="radio" name="reason" value="Ziek">Ziek</label></div>
+      <div id="sick-dates" hidden>
+        <div data-automation-id="questionItem"><h2>10. Welke dag meld je je ziek?</h2><input type="date" required></div>
+        <div data-automation-id="questionItem"><h2>11. Wanneer verwacht je beter te zijn?</h2><input type="date" required></div>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+    <script>
+      document.querySelector('#reason-sick').addEventListener('change', () => {
+        document.querySelector('#sick-dates').hidden = false;
+      });
+      document.querySelector('#sick-form').addEventListener('submit', (event) => {
+        event.preventDefault();
+        document.body.dataset.submitted = 'true';
+        const message = document.createElement('p');
+        message.textContent = 'Your response was submitted.';
+        document.body.appendChild(message);
+      });
+    </script>
+  </body>
+</html>

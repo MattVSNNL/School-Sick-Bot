@@ -1,0 +1,20 @@
+{
+  "name": "sick-form-bot",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Private Railway-ready server for submitting a Microsoft Forms sick report from an iPhone Shortcut.",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test",
+    "test:browser": "node --test test/form-fixture.test.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "luxon": "^3.7.2",
+    "playwright": "^1.55.0"
+  }
+}
